@@ -1,0 +1,39 @@
+<%- include('../partials/header'); %>
+<style>
+  ol {
+    display: flex;
+    gap: 2rem;
+
+    border: 6px solid black;
+
+    list-style: none;
+
+    li {
+      flex-grow: 1;
+
+      border: 6px solid black;
+    }
+  }
+</style>
+
+<main>
+  <ol>
+    <li>
+      <section>
+        <h1>To Do</h1>
+      </section>
+    </li>
+    <li>
+      <section>
+        <h1>Doing</h1>
+      </section>
+    </li>
+    <li>
+      <section>
+        <h1>Done</h1>
+      </section>
+    </li>
+  </ol>
+</main>
+
+<%- include('../partials/footer'); %>
