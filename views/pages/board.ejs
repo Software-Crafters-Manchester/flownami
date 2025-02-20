@@ -1,35 +1,19 @@
 <%- include('../partials/header'); %>
-<style>
-  ol {
-    display: flex;
-    gap: 2rem;
 
-    border: 6px solid black;
-
-    list-style: none;
-
-    li {
-      flex-grow: 1;
-
-      border: 6px solid black;
-    }
-  }
-</style>
-
-<main>
-  <ol>
+<main class="board">
+  <ol class="columns">
     <li>
-      <section>
+      <section class="column">
         <h1>To Do</h1>
       </section>
     </li>
     <li>
-      <section>
+      <section class="column">
         <h1>Doing</h1>
       </section>
     </li>
     <li>
-      <section>
+      <section class="column">
         <h1>Done</h1>
       </section>
     </li>
