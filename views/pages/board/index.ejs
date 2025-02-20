@@ -2,36 +2,18 @@
 
 <main class="board">
   <ol class="columns">
+    <% columns.forEach(column => {%>
     <li>
       <section class="column">
-        <h1>To Do</h1>
+        <h1><%= column.name %></h1>
         <ol class="tasks">
-          <%- include('./partials/task', {name: 'Task 1'}) %>
-          <%- include('./partials/task', {name: 'Task 2'}) %>
-          <%- include('./partials/task', {name: 'Task 3'}) %>
+          <% column.tasks.forEach(task => {%>
+            <%- include('./partials/task', task) %>
+          <% }) %>
         </ol>
       </section>
     </li>
-    <li>
-      <section class="column">
-        <h1>Doing</h1>
-        <ol class="tasks">
-          <%- include('./partials/task', {name: 'In progress...'}) %>
-        </ol>
-      </section>
-    </li>
-    <li>
-      <section class="column">
-        <h1>Done</h1>
-        <ol class="tasks">
-          <%- include('./partials/task', {name: "Finished this one" }) %>
-          <%- include('./partials/task', {name: "And this one" }) %>
-          <%- include('./partials/task', {name: "Crikey," }) %>
-          <%- include('./partials/task', {name: "Wasn't I..." }) %>
-          <%- include('./partials/task', {name: "Productive!" }) %>
-        </ol>
-      </section>
-    </li>
+    <% }) %>
   </ol>
 </main>
 
