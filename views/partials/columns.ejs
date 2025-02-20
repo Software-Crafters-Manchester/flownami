@@ -1,0 +1,67 @@
+<style>
+  ol {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    max-height: 70vh;
+    
+    li {
+      flex-grow: 1;
+      border-radius: 5px;
+      border: 1px solid black;
+      text-align: center;
+      /* background-color: aqua; */
+    }
+
+    h1 {
+      border-bottom: 0.25rem solid black;
+    }
+  }
+
+  .taskList {
+    flex-direction: column;
+    overflow-y: scroll;
+    margin: 1rem;
+    border: none;
+    flex-basis: auto;
+    justify-content: flex-start;
+    align-items: center;
+
+    li {
+      flex-shrink: 10;
+      flex-grow: 0;
+      padding: 1rem;
+      width: 200px;
+    }
+    
+  }
+
+  .todo {
+    background-color: #DD1C1A
+  }
+
+  .doing {
+    background-color: #E0A458;
+  }
+  
+  .done {
+    background-color: #23CE6B;
+  }
+
+</style>
+
+
+<li>
+  <section>
+    <h1><%= header %></h1>
+    <ol class="taskList">
+      <% tasks.forEach(task => { %> 
+        <li class=<%= className %>><%= task %></li>
+        <% }); %>      
+    </ol>
+  </section>
+</li>
