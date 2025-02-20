@@ -11,8 +11,62 @@ app.get("/", function (_, res) {
   res.render("pages/index");
 });
 
+type Column = {
+  name: string;
+  tasks: Array<Task>;
+};
+
+type Task = {
+  name: string;
+};
+
 app.get("/board", function (req, res) {
-  res.render("pages/board");
+  const columns: Array<Column> = [
+    {
+      name: "To Do",
+      tasks: [
+        {
+          name: "Task 1",
+        },
+        {
+          name: "Task 2",
+        },
+        {
+          name: "Task 3",
+        },
+      ],
+    },
+    {
+      name: "Doing",
+      tasks: [
+        {
+          name: "In progress...",
+        },
+      ],
+    },
+    {
+      name: "Done",
+      tasks: [
+        {
+          name: "Finished this one",
+        },
+        {
+          name: "And this one",
+        },
+        {
+          name: "Crikey,",
+        },
+        {
+          name: "Wasn't I...",
+        },
+        {
+          name: "Productive!",
+        },
+      ],
+    },
+  ];
+
+  res.render("pages/board", { columns });
 });
 
 const port = Deno.env.get("PORT") || 8080;
