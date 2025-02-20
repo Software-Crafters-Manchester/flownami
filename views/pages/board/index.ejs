@@ -3,16 +3,7 @@
 <main class="board">
   <ol class="columns">
     <% columns.forEach(column => {%>
-    <li>
-      <section class="column">
-        <h1><%= column.name %></h1>
-        <ol class="tasks">
-          <% column.tasks.forEach(task => {%>
-            <%- include('./partials/task', task) %>
-          <% }) %>
-        </ol>
-      </section>
-    </li>
+      <%- include('./partials/column', column) %>
     <% }) %>
   </ol>
 </main>
