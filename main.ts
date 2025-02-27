@@ -20,7 +20,7 @@ type Task = {
   name: string;
 };
 
-app.get("/board", function (req, res) {
+app.get("/board", function (_req, res) {
   const columns: Array<Column> = [
     {
       name: "To Do",
