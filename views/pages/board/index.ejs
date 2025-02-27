@@ -3,7 +3,9 @@
 <main class="board">
   <ol class="columns">
     <% columns.forEach(column => {%>
-      <%- include('./partials/column', column) %>
+      <li>
+        <%- include('./partials/column', column) %>
+      </li>
     <% }) %>
   </ol>
 </main>
