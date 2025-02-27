@@ -1,60 +1,58 @@
 body {
-    --primary-color: #222222;
-    --column-color: #eeeeee;
-    --task-color: #fefefe;
-  }
-  
-  .board {
-    color: var(--primary-color);
-  }
-  
-  /* Remove default numbering for lists */
-  .board ol {
-    padding-inline: 0;
-    list-style: none;
-  }
-  
-  /* Lay columns out across the page */
-  .columns {
-    display: flex;
-    gap: 1.5em;
-  }
-  
-  /* Draw black lines around columns and tasks */
-  .column,
-  .task {
-    border: 3px solid var(--primary-color);
-    border-radius: 10px;
-  }
-  
-  /* Style the columns */
-  .column {
-    min-width: 16em;
-    padding-inline: 1em;
-  
-    background-color: var(--column-color);
+  --primary-color: #222222;
+  --column-color: #eeeeee;
+  --task-color: #fefefe;
+}
 
-    h1 {
-      font-weight: normal;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center
-    }
-  }
+.board {
+  color: var(--primary-color);
+}
 
+/* Remove default numbering for lists */
+.board ol {
+  padding-inline: 0;
+  list-style: none;
+}
 
-  
-  /* Style the tasks themselves */
-  .task {
-    margin-bottom: 1.5em;
-    min-height: 5em;
-    padding: 1em;
-  
-    background-color: var(--task-color);
-  
-    h1 {
-      margin: 0;
-      font-weight: normal;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: left
-    }
+/* Lay columns out across the page */
+.columns {
+  display: flex;
+  gap: 1.5em;
+}
+
+/* Draw black lines around columns and tasks */
+.column,
+.task {
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+}
+
+/* Style the columns */
+.column {
+  min-width: 16em;
+  padding-inline: 1em;
+
+  background-color: var(--column-color);
+
+  h1 {
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
   }
+}
+
+/* Style the tasks themselves */
+.task {
+  margin-bottom: 1.5em;
+  min-height: 5em;
+  padding: 1em;
+
+  background-color: var(--task-color);
+
+  h1 {
+    margin: 0;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+  }
+}
