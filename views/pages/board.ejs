@@ -1,0 +1,261 @@
+<%- include('../partials/header'); %>
+<style>
+  :root {
+    --bg-white: rgba(255,255,255);
+    --bg-white-1: rgba(240, 240, 240);    
+    --bg-white-2: rgba(250, 250, 255); 
+    --primary-black-100: rgba(120,120,120); 
+    --primary-black-200: rgba(85,85,85);  
+    --brand-green: rgba(145, 255, 198, 0.5);
+    --brand-green-0: rgba(145, 255, 198, 0.1);
+    --brand-green-100: rgba(145, 255, 198, 0.5);
+    --brand-green-200: rgba(98, 210, 152, 0.8);
+    --brand-green-300: rgb(65, 209, 135);
+    --brand-purple-0: rgba(217, 138, 248, 0.1);
+    --brand-purple-100: rgba(217, 138, 248, 0.5);
+    --brand-purple-200: rgba(206, 107, 244, 0.8);
+    --brand-purple-300: rgba(206, 107, 244);
+    --brand-blue-0: rgba(93, 230, 254, 0.1);
+    --brand-blue-100: rgba(93, 230, 254, 0.5);
+    --brand-blue-200: rgba(79, 221, 247, 0.8);
+    --brand-blue-300: rgb(65, 186, 208);
+    --default-shadow: rgba(30,30,30, 0.05);
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-white-2);
+  }
+
+  .board-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px 0px;
+    background-color: var(--background-color);
+
+  }
+
+  /* Column Styles */
+  .board-view__column {
+    box-sizing: border-box;
+    padding-inline: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-white);
+    width: 30%;
+    min-height: 80vh;
+    border-radius: 30px;
+  }
+
+  .list__todo {
+    border: 10px solid var(--brand-blue-100);
+    box-shadow: 0px 0px 5px 5px var(--default-shadow);
+
+  }
+
+  .list__in-progress {
+    border: 10px solid var(--brand-purple-100);
+    box-shadow: 0px 0px 5px 5px var(--default-shadow);
+  }
+
+  .list__done {
+    border: 10px solid var(--brand-green-100);
+    box-shadow: 0px 0px 5px 5px var(--default-shadow);
+  }
+
+  .board-view__col-title {
+    width: 100%;
+    color: var(--primary-black);
+    /* border-bottom: 2px solid rgba(0,0,0, 0.2); */
+  }
+
+  /* Wrapper styles */
+  .content-wrapper--narrow {
+    margin-inline: auto;
+    max-width: 1000px;
+    width: 100%;
+    padding-inline: 30px;
+  }
+  .content-wrapper--normal {
+    margin-inline: auto;
+    max-width: 1200px;
+    width: 100%;
+    padding-inline: 30px;
+  }
+  .content-wrapper--wide {
+    margin-inline: auto;
+    max-width: 1300px;
+    width: 100%;
+    padding-inline: 30px;
+  }
+
+  .title-rounded-bg {
+    padding: 10px 20px;
+    font-weight: 900;
+    background-color: rgba(200,200, 200, 0.8);
+    color: var(--bg-white);
+    border-radius: 30px;
+    padding-left: 40px;
+    position: relative;
+  }
+
+  .title-rounded-bg:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: inherit;
+  }
+  
+  /* Title Rounded GREEN Styles */
+  .title-rounded-bg--green {
+    background-color: var(--brand-green-200);
+  }
+
+  .title-rounded-bg--green:before {
+    background-color: var(--brand-green-300);
+  }
+  
+  /* Title Rounded PURPLE Styles */
+  .title-rounded-bg--purple {
+    background-color: var(--brand-purple-200);
+  }
+  .title-rounded-bg--purple:before {
+    background-color: var(--brand-purple-300);
+  }
+  
+  /* Title Rounded BLUE Styles */
+  .title-rounded-bg--blue {
+    background-color: var(--brand-blue-200);
+  }
+
+  .title-rounded-bg--blue:before {
+    background-color: var(--brand-blue-300);
+  }
+
+  /* Board View BUTTON */
+  .board-view__button-wrapper {
+    display: block;
+    height: fit-content;
+    position: relative;
+  }
+
+  .board-view__button-wrapper:before {
+    content: '+';
+    font-size: 1.5rem;
+    padding-bottom: 5px;
+    line-height: 1.25rem;
+    display: block;
+    position: absolute;
+    color: var(--primary-black-200);
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%); 
+  }
+
+  /* Board View Button BLUE */
+  .board-view-button--blue:hover {
+    background-color: var(--brand-blue-0);
+  }
+  /* Board View Button PURPLE */
+  .board-view-button--purple:hover {
+    background-color: var(--brand-purple-0);
+  }
+  /* Board View Button GREEN */
+  .board-view-button--green:hover {
+    background-color: var(--brand-green-0);
+  }
+
+  .board-view__button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 20px 30px;
+    padding-left: 45px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--primary-black-200);
+    /* border: 2px solid var(--primary-black-100); */
+    border: none;
+    background-color: rgba(0,0,0,0.025);
+  }
+
+
+  h2 {
+    color: var(--primary-black-200);
+    font-size: 1.25rem;
+  }
+
+
+
+
+</style>
+
+<main class="app-view content-wrapper--normal">
+  <section class="intro">
+    <h1>Life Mastery Kanban board</h1>
+  </section>
+
+  <section class="board-view">
+    <div class="board-view__column list__todo">
+      <div class="board-view__col-title">
+        <h2 class="title-rounded-bg title-rounded-bg--blue">To Do</h2>
+      </div>
+      <ul class="board-view__list">
+        <li class="board-view__list-item">Task 1</li>
+        <li class="board-view__list-item">Task 2</li>
+        <li class="board-view__list-item">Task 3</li>
+      </ul> 
+      <div class="board-view__button-wrapper">
+        <button class="board-view__button board-view-button--blue">
+          New Task
+        </button>
+      </div>     
+    </div>
+    <div class="board-view__column list__in-progress">
+        <div class="board-view__col-title">
+          <h2 class="title-rounded-bg title-rounded-bg--purple">In Progress</h2>
+        </div>
+        <ul class="board-view__list">
+          <li class="board-view__list-item">Task 1</li>
+          <li class="board-view__list-item">Task 2</li>
+          <li class="board-view__list-item">Task 3</li>
+        </ul> 
+        <div class="board-view__button-wrapper">
+          <button class="board-view__button board-view-button--purple">
+            New Task
+          </button>
+        </div>
+    </div>
+    <div class="board-view__column list__done">
+        <div class="board-view__col-title">
+          <h2 class="title-rounded-bg title-rounded-bg--green">Done</h2>
+        </div>
+        <ul class="board-view__list">
+          <li class="board-view__list-item">Task 1</li>
+          <li class="board-view__list-item">Task 2</li>
+          <li class="board-view__list-item">Task 3</li>
+        </ul> 
+        <div class="board-view__button-wrapper">
+          <button class="board-view__button board-view-button--green">
+            New Task
+          </button>
+        </div>
+    </div>
+  
+  </section>
+</main>
+
+<%- include('../partials/footer'); %>
