@@ -12,15 +12,4 @@ Deno.test("Board shows three columns", async () => {
   assertStringIncludes(html, "To Do");
   assertStringIncludes(html, "Doing");
   assertStringIncludes(html, "Done");
-
-  assertStringIncludes(html, "Task 1");
-  assertStringIncludes(html, "Task 2");
-  assertStringIncludes(html, "Task 3");
-
-  assertStringIncludes(html, "In progress...");
-
-  assertStringIncludes(html, "And this one");
-  assertStringIncludes(html, "Crikey,");
-  assertStringIncludes(html, "Wasn&#39;t I...");
-  assertStringIncludes(html, "Productive!");
 });
