@@ -17,7 +17,6 @@ body {
   /* Lay columns out across the page */
   .columns {
     display: flex;
-  
     gap: 1.5em;
   }
   
@@ -25,11 +24,12 @@ body {
   .column,
   .task {
     border: 3px solid var(--primary-color);
+    border-radius: 10px;
   }
   
   /* Style the columns */
   .column {
-    min-width: 12em;
+    min-width: 16em;
     padding-inline: 1em;
   
     background-color: var(--column-color);
