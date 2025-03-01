@@ -209,51 +209,57 @@
   </section>
 
   <section class="board-view">
-    <div class="board-view__column list__todo">
-      <div class="board-view__col-title">
+
+    <!-- To Do Column -->
+    <article class="board-view__column list__todo">
+      <header class="board-view__col-title">
         <h2 class="title-rounded-bg title-rounded-bg--blue">To Do</h2>
-      </div>
-      <ul class="board-view__list">
-        <li class="board-view__list-item">Task 1</li>
-        <li class="board-view__list-item">Task 2</li>
-        <li class="board-view__list-item">Task 3</li>
+      </header>
+      <ul class="board-view__list" role="list">
+        <li class="board-view__list-task list-task list-task" role="listitem">Task 1</li>
+        <li class="board-view__list-task list-task" role="listitem">Task 2</li>
+        <li class="board-view__list-task list-task" role="listitem">Task 3</li>
       </ul> 
-      <div class="board-view__button-wrapper">
+      <footer class="board-view__button-wrapper">
         <button class="board-view__button board-view-button--blue">
           New Task
         </button>
-      </div>     
-    </div>
-    <div class="board-view__column list__in-progress">
-        <div class="board-view__col-title">
+      </footer>     
+    </article>
+
+    <!-- In Progress Column -->
+    <article class="board-view__column list__in-progress">
+        <header class="board-view__col-title">
           <h2 class="title-rounded-bg title-rounded-bg--purple">In Progress</h2>
-        </div>
-        <ul class="board-view__list">
-          <li class="board-view__list-item">Task 1</li>
-          <li class="board-view__list-item">Task 2</li>
-          <li class="board-view__list-item">Task 3</li>
-        </ul> 
-        <div class="board-view__button-wrapper">
+        </header>
+        <ul class="board-view__list" role="list">
+          <li class="board-view__list-task list-task" role="listitem">Task 1</li>
+          <li class="board-view__list-task list-task" role="listitem">Task 2</li>
+          <li class="board-view__list-task list-task" role="listitem">Task 3</li>
+        </ul>
+        <footer class="board-view__button-wrapper">
           <button class="board-view__button board-view-button--purple">
             New Task
           </button>
-        </div>
-    </div>
-    <div class="board-view__column list__done">
-        <div class="board-view__col-title">
+        </footer>
+    </article>
+    
+    <!-- Done Column -->
+    <article class="board-view__column list__done">
+        <header class="board-view__col-title">
           <h2 class="title-rounded-bg title-rounded-bg--green">Done</h2>
-        </div>
-        <ul class="board-view__list">
-          <li class="board-view__list-item">Task 1</li>
-          <li class="board-view__list-item">Task 2</li>
-          <li class="board-view__list-item">Task 3</li>
+        </header>
+        <ul class="board-view__list" role="list">
+          <li class="board-view__list-task list-task" role="listitem">Task 1</li>
+          <li class="board-view__list-task list-task" role="listitem">Task 2</li>
+          <li class="board-view__list-task list-task" role="listitem">Task 3</li>
         </ul> 
-        <div class="board-view__button-wrapper">
+        <footer class="board-view__button-wrapper">
           <button class="board-view__button board-view-button--green">
             New Task
           </button>
-        </div>
-    </div>
+        </footer>
+      </article>
   
   </section>
 </main>
