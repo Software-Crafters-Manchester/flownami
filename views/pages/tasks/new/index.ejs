@@ -1,0 +1,11 @@
+<%- include('../../../partials/header'); %>
+
+<h1>NEW TASK</h1>
+
+<form action="/task" method="post">
+    <label for="tname">Task name:</label><br>
+    <input type="text" id="tname" name="tname"><br>
+    <input type="submit" value="Submit">
+</form>
+
+<%- include('../../../partials/footer'); %>

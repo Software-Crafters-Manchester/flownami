@@ -13,3 +13,13 @@ Deno.test("Board shows three columns", async () => {
   assertStringIncludes(html, "Doing");
   assertStringIncludes(html, "Done");
 });
+
+Deno.test("Add task to To Do column", async () => {
+  const response = await fetch("http://localhost:8081/task", {
+    method: "POST",
+    body: "tname=test+task",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  });
+  const html = await response.text();
+  assertStringIncludes(html, "test task");
+});
