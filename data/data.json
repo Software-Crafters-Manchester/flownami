@@ -1,1 +1,6 @@
-[{"name":"Hello"},{"name":"Test"}]
+[
+  { "name": "Hello" },
+  { "name": "Test" },
+  { "name": "Mega Test" },
+  { "name": "Test 4" }
+]

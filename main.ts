@@ -1,6 +1,5 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
-import bodyParser from "npm:body-parser"
 import { readTasks, writeTasks } from "./data/tasksStore.ts";
 import { Task } from "./data/task.ts";
 
@@ -9,7 +8,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static("static"));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", function (_, res) {
   res.render("pages/index");
@@ -61,7 +60,7 @@ app.get("/board", async function (_req, res) {
 });
 
 app.get("/tasks/new", (req, res) => {
-  res.render('pages/create');
+  res.render("pages/create");
 });
 
 app.post("/task", async (req, res) => {
@@ -75,10 +74,9 @@ app.post("/task", async (req, res) => {
 
   await writeTasks(tasks);
 
-  res.redirect('/board');
+  res.redirect("/board");
 });
 
 const port = Deno.env.get("PORT") || 8080;
 app.listen(port);
 console.log(`Server is listening on port ${port}`);
-
