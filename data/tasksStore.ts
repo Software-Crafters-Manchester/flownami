@@ -1,4 +1,4 @@
-import { Task } from "./main.ts";
+import { Task } from "./task.ts";
 
 export async function writeTasks(tasks: Task[]) {
 

@@ -2,6 +2,7 @@
 import express from "npm:express";
 import bodyParser from "npm:body-parser"
 import { readTasks, writeTasks } from "./data/tasksStore.ts";
+import { Task } from "./data/task.ts";
 
 const app = express();
 
@@ -19,25 +20,12 @@ type Column = {
   tasks: Array<Task>;
 };
 
-export type Task = {
-  name: string;
-};
-
-app.get("/board", function (_req, res) {
+app.get("/board", async function (_req, res) {
+  const tasks = await readTasks();
   const columns: Array<Column> = [
     {
       name: "To Do",
-      tasks: [
-        {
-          name: "Task 1",
-        },
-        {
-          name: "Task 2",
-        },
-        {
-          name: "Task 3",
-        },
-      ],
+      tasks,
     },
     {
       name: "Doing",
@@ -72,7 +60,7 @@ app.get("/board", function (_req, res) {
   res.render("pages/board", { columns });
 });
 
-app.get("/create", (req, res) => {
+app.get("/tasks/new", (req, res) => {
   res.render('pages/create');
 });
 
