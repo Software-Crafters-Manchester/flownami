@@ -1,6 +1,10 @@
 <%- include('../../partials/header'); %>
 
 <main class="board">
+  <a href="/create">
+    <button class="button">Add Task</button>
+  </a>
+  
   <ol class="columns">
     <% columns.forEach(column => {%>
       <li>
