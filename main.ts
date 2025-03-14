@@ -53,6 +53,10 @@ app.post("/tasks", async (req, res) => {
   res.redirect("/board");
 });
 
-const port = Deno.env.get("PORT") || 8080;
-app.listen(port);
-console.log(`Server is listening on port ${port}`);
+if (import.meta.main) {
+  const port = Deno.env.get("PORT") || 8080;
+  app.listen(port);
+  console.log(`Server is listening on port ${port}`);
+}
+
+export default app;

@@ -1,4 +1,7 @@
 import { assertStringIncludes } from "@std/assert";
+import app from "./main.ts";
+
+app.listen(8081);
 
 Deno.test("Homepage renders successfully", async () => {
   const response = await fetch("http://localhost:8081/");
