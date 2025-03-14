@@ -69,6 +69,10 @@ app.get("/board", function (_req, res) {
   res.render("pages/board", { columns });
 });
 
-const port = Deno.env.get("PORT") || 8080;
-app.listen(port);
-console.log(`Server is listening on port ${port}`);
+if (import.meta.main) {
+  const port = Deno.env.get("PORT") || 8080;
+  app.listen(port);
+  console.log(`Server running at http://localhost:${port}`);
+}
+
+export default app;
