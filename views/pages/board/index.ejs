@@ -1,6 +1,12 @@
 <%- include('../../partials/header'); %>
 
 <main class="board">
+  <h1>Task Board</h1>
+  
+  <div>
+    <a href="/tasks/new">Add New Task</a>
+  </div>
+  
   <ol class="columns">
     <% columns.forEach(column => {%>
       <li>
