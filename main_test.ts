@@ -13,3 +13,10 @@ Deno.test("Board shows three columns", async () => {
   assertStringIncludes(html, "Doing");
   assertStringIncludes(html, "Done");
 });
+
+Deno.test("New task form renders", async () => {
+  const response = await fetch("http://localhost:8081/tasks/new");
+  const html = await response.text();
+  assertStringIncludes(html, "Add New Task");
+  assertStringIncludes(html, "form action=\"/tasks\"");
+});
