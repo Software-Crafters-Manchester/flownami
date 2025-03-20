@@ -1,0 +1,52 @@
+{
+  "columns": [
+    {
+      "name": "To Do",
+      "tasks": [
+        {
+          "name": "Task 1"
+        },
+        {
+          "name": "Task 2"
+        },
+        {
+          "name": "Task 3"
+        },
+        {
+          "name": "Eat 3 slices of pizzas"
+        },
+        {
+          "name": "Finish auth0"
+        }
+      ]
+    },
+    {
+      "name": "Doing",
+      "tasks": [
+        {
+          "name": "In progress..."
+        }
+      ]
+    },
+    {
+      "name": "Done",
+      "tasks": [
+        {
+          "name": "Finished this one"
+        },
+        {
+          "name": "And this one"
+        },
+        {
+          "name": "Crikey,"
+        },
+        {
+          "name": "Wasn't I..."
+        },
+        {
+          "name": "Productive!"
+        }
+      ]
+    }
+  ]
+}
