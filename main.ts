@@ -1,8 +1,5 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
-import { readTasks, writeTasks } from "./data/tasksStore.ts";
-import { generateBoard } from "./services/boardService.ts";
-import { createTask } from "./services/taskService.ts";
 
 const app = express();
 
@@ -15,10 +12,17 @@ app.get("/", function (_req, res) {
   res.render("pages/index");
 });
 
-app.get("/board", async function (_req, res) {
-  const tasks = await readTasks();
-  const columns = generateBoard(tasks);
+type Task = {
+  name: string;
+};
 
+type Column = {
+  name: string;
+  tasks: Array<Task>;
+};
+
+app.get("/board", async function (_req, res) {
+  const columns = await readTasks();
   res.render("pages/board", { columns });
 });
 
@@ -26,17 +30,25 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
+async function writeTasks(tasks: Task[]) {
+  await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
+}
+
+async function readTasks() {
+  const data = await Deno.readTextFile("./data.json");
+  return JSON.parse(data);
+}
+
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
-  const newTask = createTask(taskName);
+  const newTask = { name: taskName };
 
+  const columns = await readTasks();
 
-  const tasks = await readTasks();
+  columns[0].tasks.push(newTask);
 
-  tasks.push(newTask);
-
-  await writeTasks(tasks);
+  await writeTasks(columns);
 
   res.redirect("/board");
 });
