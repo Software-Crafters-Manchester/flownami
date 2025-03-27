@@ -59,7 +59,7 @@ app.get("/board", async function (_req, res) {
   res.render("pages/board", { columns });
 });
 
-app.get("/tasks/new", (req, res) => {
+app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
