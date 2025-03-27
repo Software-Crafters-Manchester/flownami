@@ -63,7 +63,7 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
-app.post("/task", async (req, res) => {
+app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
   const newTask = { name: taskName };
