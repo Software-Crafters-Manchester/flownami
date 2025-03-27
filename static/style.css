@@ -4,6 +4,36 @@ body {
   --task-color: #fefefe;
 }
 
+/* Button styling */
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: large;
+  width: 12rem;
+  height:3rem
+}
+
+.button:hover {
+  background-color: #7e7e7e;
+}
+
+.form {
+  display: flex;
+  flex-direction:column;
+  gap: 1em;
+}
+
+.input {
+  padding: 0.5em;
+  height:2rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+}
+
 .board {
   color: var(--primary-color);
 }
