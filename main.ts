@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(express.static("static"));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", function (_, res) {
+app.get("/", function (_req, res) {
   res.render("pages/index");
 });
 
