@@ -1,10 +1,1 @@
-[
-  { "name": "Hello" },
-  { "name": "Test" },
-  { "name": "Mega Test" },
-  { "name": "Test 4" },
-  { "name": "asdf" },
-  { "name": "Hello world" },
-  { "name": "TEasting" },
-  { "name": "Tasks" }
-]
+[{"name":"Hello"},{"name":"Test"},{"name":"Mega Test"},{"name":"Test 4"},{"name":"asdf"},{"name":"Hello world"},{"name":"TEasting"},{"name":"Tasks"},{"name":"Refactor"}]

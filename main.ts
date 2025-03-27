@@ -1,7 +1,8 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
 import { readTasks, writeTasks } from "./data/tasksStore.ts";
-import { Task } from "./data/task.ts";
+import { generateBoard } from "./services/boardService.ts";
+import { createTask } from "./services/taskService.ts";
 
 const app = express();
 
@@ -14,47 +15,9 @@ app.get("/", function (_req, res) {
   res.render("pages/index");
 });
 
-type Column = {
-  name: string;
-  tasks: Array<Task>;
-};
-
 app.get("/board", async function (_req, res) {
   const tasks = await readTasks();
-  const columns: Array<Column> = [
-    {
-      name: "To Do",
-      tasks,
-    },
-    {
-      name: "Doing",
-      tasks: [
-        {
-          name: "In progress...",
-        },
-      ],
-    },
-    {
-      name: "Done",
-      tasks: [
-        {
-          name: "Finished this one",
-        },
-        {
-          name: "And this one",
-        },
-        {
-          name: "Crikey,",
-        },
-        {
-          name: "Wasn't I...",
-        },
-        {
-          name: "Productive!",
-        },
-      ],
-    },
-  ];
+  const columns = generateBoard(tasks);
 
   res.render("pages/board", { columns });
 });
@@ -66,7 +29,8 @@ app.get("/tasks/new", (_req, res) => {
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
-  const newTask = { name: taskName };
+  const newTask = createTask(taskName);
+
 
   const tasks = await readTasks();
 

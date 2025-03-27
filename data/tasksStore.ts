@@ -1,4 +1,4 @@
-import { Task } from "./task.ts";
+import { Task } from "../types/task.ts";
 
 export async function writeTasks(tasks: Task[]) {
   await Deno.writeTextFile("./data/data.json", JSON.stringify(tasks));
