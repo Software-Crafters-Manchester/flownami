@@ -4,15 +4,13 @@
 <main>
   <div>
     <h1>Edit Task</h1>
-    <form action="/task" method="put">
-      <input type="text" name="taskName" value="<%- task.name %>"/>
+      <%- task.name %>
       <select name="column">
         <option value="todo" selected>To Do</option>
         <option value="doing" >Doing</option>
         <option value="done" >Done</option>
       </select>
-      <input type="submit" />
-    </form>
+      <input type="submit" onclick="updateTask()"/>
   </div>
 </main>
 
