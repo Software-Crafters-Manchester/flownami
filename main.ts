@@ -55,6 +55,10 @@ app.post("/tasks", async (req, res) => {
   res.redirect("/board");
 });
 
+app.get("/tasks/:id/edit", async (req, res) => {
+  res.render("pages/task/edit");
+});
+
 if (import.meta.main) {
   const port = Deno.env.get("PORT") || 8080;
   app.listen(port);
