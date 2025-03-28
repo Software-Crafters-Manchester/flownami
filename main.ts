@@ -11,6 +11,7 @@ app.use('/scripts', express.static("scripts", {setHeader: function (res, path, s
 }}));
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", function (_req, res) {
   res.render("pages/index");
@@ -73,7 +74,8 @@ app.get("/tasks/:id/edit", async (req, res) => {
 });
 
 app.put("/tasks/:id", async (req, res) => {
-  console.log(`PUT TASK ${req.params.id}`);
+  console.log(req.body);
+  return res.sendStatus(204);
 });
 
 if (import.meta.main) {
