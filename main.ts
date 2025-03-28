@@ -6,6 +6,10 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static("static"));
+app.use('/scripts', express.static("scripts", {setHeader: function (res, path, stat) {
+  res.type('application/javascript');
+}}));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", function (_req, res) {
@@ -66,6 +70,10 @@ app.get("/tasks/:id/edit", async (req, res) => {
   .find((task) => task.id === req.params.id);
 
   res.render("pages/task/edit", { task });
+});
+
+app.put("/tasks/:id", async (req, res) => {
+  console.log(`PUT TASK ${req.params.id}`);
 });
 
 if (import.meta.main) {
