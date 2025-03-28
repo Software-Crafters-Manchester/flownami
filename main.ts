@@ -13,6 +13,7 @@ app.get("/", function (_req, res) {
 });
 
 type Task = {
+  id: string;
   name: string;
 };
 
