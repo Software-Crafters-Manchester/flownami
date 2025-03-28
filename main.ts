@@ -56,7 +56,16 @@ app.post("/tasks", async (req, res) => {
 });
 
 app.get("/tasks/:id/edit", async (req, res) => {
-  res.render("pages/task/edit");
+  let columns = await readTasks();
+
+  let task = columns.reduce((tasks, column) => {
+    tasks.push(column.tasks);
+    return tasks;
+  }, [])
+  .flat()
+  .find((task) => task.id === req.params.id);
+
+  res.render("pages/task/edit", { task });
 });
 
 if (import.meta.main) {
