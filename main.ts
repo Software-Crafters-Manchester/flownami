@@ -6,9 +6,14 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static("static"));
-app.use('/scripts', express.static("scripts", {setHeader: function (res, _path, _stat) {
-  res.type('application/javascript');
-}}));
+app.use(
+  "/scripts",
+  express.static("scripts", {
+    setHeader: function (res, _path, _stat) {
+      res.type("application/javascript");
+    },
+  }),
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -38,7 +43,6 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
-
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
@@ -60,8 +64,8 @@ app.get("/tasks/:id/edit", async (req, res) => {
     tasks.push(column.tasks);
     return tasks;
   }, [])
-  .flat()
-  .find((task: Task) => task.id === req.params.id);
+    .flat()
+    .find((task: Task) => task.id === req.params.id);
 
   res.render("pages/task/edit", { task });
 });
@@ -72,11 +76,13 @@ app.put("/tasks/:id", async (req, res) => {
     acc.push(column.tasks);
     return acc;
   }, [])
-  .flat()
+    .flat();
 
   const updatedTask: Task = req.body;
 
-  const currentTaskIndex = tasks.findIndex((t: Task) => t.id === updatedTask.id);
+  const currentTaskIndex = tasks.findIndex((t: Task) =>
+    t.id === updatedTask.id
+  );
   tasks[currentTaskIndex] = updatedTask;
 
   const updatedColumns = buildBoard(tasks);
@@ -85,7 +91,6 @@ app.put("/tasks/:id", async (req, res) => {
 
   return res.sendStatus(204);
 });
-
 
 function buildBoard(tasks: Task[]): Board {
   const todoTasks: Task[] = tasks.filter((t) => t.column === "To Do");
