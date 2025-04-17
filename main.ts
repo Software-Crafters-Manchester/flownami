@@ -6,10 +6,9 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static("static"));
-app.use('/scripts', express.static("scripts", {setHeader: function (res, path, stat) {
+app.use('/scripts', express.static("scripts", {setHeader: function (res, _path, _stat) {
   res.type('application/javascript');
 }}));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -28,6 +27,8 @@ type Column = {
   tasks: Array<Task>;
 };
 
+type Board = Column[];
+
 app.get("/board", async function (_req, res) {
   const columns = await readTasks();
   res.render("pages/board", { columns });
@@ -37,14 +38,6 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
-async function writeTasks(tasks: Column[]) {
-  await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
-}
-
-async function readTasks() {
-  const data = await Deno.readTextFile("./data.json");
-  return JSON.parse(data);
-}
 
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
@@ -61,45 +54,60 @@ app.post("/tasks", async (req, res) => {
 });
 
 app.get("/tasks/:id/edit", async (req, res) => {
-  let columns = await readTasks();
+  const columns = await readTasks();
 
-  let task = columns.reduce((tasks, column) => {
+  const task = columns.reduce((tasks: Task[][], column: Column) => {
     tasks.push(column.tasks);
     return tasks;
   }, [])
   .flat()
-  .find((task) => task.id === req.params.id);
+  .find((task: Task) => task.id === req.params.id);
 
   res.render("pages/task/edit", { task });
 });
 
 app.put("/tasks/:id", async (req, res) => {
-  let columns = await readTasks();
-  let tasks = columns.reduce((tasks, column) => {
-    tasks.push(column.tasks);
-    return tasks;
+  const columns = await readTasks();
+  const tasks: Task[] = columns.reduce((acc: Task[][], column: Column) => {
+    acc.push(column.tasks);
+    return acc;
   }, [])
   .flat()
 
-  let updatedTask = req.body;
+  const updatedTask: Task = req.body;
 
-  let currentTaskIndex = tasks.findIndex((t) => t.id === updatedTask.id);
+  const currentTaskIndex = tasks.findIndex((t: Task) => t.id === updatedTask.id);
   tasks[currentTaskIndex] = updatedTask;
 
-  let todoTasks: Task[] = tasks.filter((t) => t.column === "To Do");
-  let doingTasks: Task[] = tasks.filter((t) => t.column === "Doing");
-  let doneTasks: Task[] = tasks.filter((t) => t.column === "Done");
-  
-  let updatedColumns: Column[] = [
-    {name: "To Do", tasks: todoTasks},
-    {name: "Doing", tasks: doingTasks},
-    {name: "Done", tasks: doneTasks},
-  ]
+  const updatedColumns = buildBoard(tasks);
 
   await writeTasks(updatedColumns);
 
   return res.sendStatus(204);
 });
+
+
+function buildBoard(tasks: Task[]): Board {
+  const todoTasks: Task[] = tasks.filter((t) => t.column === "To Do");
+  const doingTasks: Task[] = tasks.filter((t) => t.column === "Doing");
+  const doneTasks: Task[] = tasks.filter((t) => t.column === "Done");
+
+  const updatedColumns: Column[] = [
+    { name: "To Do", tasks: todoTasks },
+    { name: "Doing", tasks: doingTasks },
+    { name: "Done", tasks: doneTasks },
+  ];
+  return updatedColumns;
+}
+
+async function writeTasks(tasks: Column[]) {
+  await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
+}
+
+async function readTasks() {
+  const data = await Deno.readTextFile("./data.json");
+  return JSON.parse(data);
+}
 
 if (import.meta.main) {
   const port = Deno.env.get("PORT") || 8080;
