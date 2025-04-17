@@ -16,6 +16,13 @@ type Task = {
   name: string;
 };
 
+type TaskGroup = {
+  name: string,
+  tasks: Task[],
+};
+
+type TaskDb = TaskGroup[];
+
 type Column = {
   name: string;
   tasks: Array<Task>;
@@ -30,7 +37,7 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
-async function writeTasks(tasks: Task[]) {
+async function writeTasks(tasks: TaskDb) {
   await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
 }
 
