@@ -2,4 +2,8 @@
   <a href="tasks/edit/<%= id %>">
     <%= name %>
   </a>
+
+  <form action="/tasks/delete/<%= id %>" method="post">
+    <input type="submit" value="X" />
+  </form>
 </article>

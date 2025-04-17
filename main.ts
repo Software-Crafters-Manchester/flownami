@@ -85,6 +85,19 @@ async function readTasks() {
 app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
+
+app.post("/tasks/delete/:task_id", async (req, res) => {
+  const tasks = await readTasks();
+  const taskId = req.params.task_id;
+
+  if (await deleteTaskById(tasks, taskId) == false) {
+    return res.status(404).send('Not Found');
+  }
+
+  writeTasks(tasks);
+  res.redirect('/board')
+});
+
 app.post("/tasks/edit/:task_id", async (req, res) => {
   const tasks = await readTasks();
   const taskId = req.params.task_id;
