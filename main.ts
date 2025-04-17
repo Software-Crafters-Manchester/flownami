@@ -37,6 +37,44 @@ app.get("/board", async function (_req, res) {
 app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
+async function getTaskById(tasks: TaskDb, taskId)  {
+  for (var idx = 0; idx < tasks.length; idx++){
+    for (var iidx = 0; iidx < tasks[idx].tasks.length; iidx++) {
+      const task = tasks[idx].tasks[iidx];
+      if (task.id == taskId) 
+        return task;
+    }
+  }
+  return null;
+}
+
+async function updateTaskById(tasks: TaskDb, taskId: string, updateFn)  {
+  for (var idx = 0; idx < tasks.length; idx++){
+    for (var iidx = 0; iidx < tasks[idx].tasks.length; iidx++) {
+      const task = tasks[idx].tasks[iidx];
+      if (task.id == taskId) 
+      {
+        updateFn(task);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+async function deleteTaskById(tasks: TaskDb, taskId: string)  {
+  for (var idx = 0; idx < tasks.length; idx++){
+    for (var iidx = 0; iidx < tasks[idx].tasks.length; iidx++) {
+      const task = tasks[idx].tasks[iidx];
+      if (task.id == taskId) 
+      {
+        tasks[idx].tasks.splice(iidx, 1);
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 async function writeTasks(tasks: TaskDb) {
   await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
