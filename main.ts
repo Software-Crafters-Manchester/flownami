@@ -14,6 +14,7 @@ app.get("/", function (_req, res) {
 
 type Task = {
   name: string;
+  id: string;
 };
 
 type TaskGroup = {
@@ -49,7 +50,7 @@ async function readTasks() {
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
-  const newTask = { name: taskName };
+  const newTask = { name: taskName, id: crypto.randomUUID() };
 
   const columns = await readTasks();
 
