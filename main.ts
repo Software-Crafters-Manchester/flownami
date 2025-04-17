@@ -9,7 +9,7 @@ app.use(express.static("static"));
 app.use(
   "/scripts",
   express.static("scripts", {
-    setHeader: function (res, _path, _stat) {
+    setHeaders: function (res, _path, _stat) {
       res.type("application/javascript");
     },
   }),
@@ -89,7 +89,9 @@ app.put("/tasks/:id", async (req, res) => {
 
   await writeTasks(updatedColumns);
 
-  return res.sendStatus(204);
+  res.sendStatus(204);
+
+  return;
 });
 
 function buildBoard(tasks: Task[]): Board {
