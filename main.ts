@@ -85,6 +85,38 @@ async function readTasks() {
 app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
+app.post("/tasks/edit/:task_id", async (req, res) => {
+  const tasks = await readTasks();
+  const taskId = req.params.task_id;
+
+  const updated = await updateTaskById(
+    tasks, 
+    taskId, 
+    (task) => {
+      task.name = req.body.name;
+    });
+
+    if (updated == false) {
+      return res.status(404).send('Not Found');
+    }
+
+  await writeTasks(tasks);
+  res.redirect('/board')
+});
+
+app.get("/tasks/edit/:task_id", async (req, res) => {
+  const tasks = await readTasks();
+  const taskId = req.params.task_id;
+  
+  const task = await getTaskById(tasks, taskId);
+
+  if (task == null) {
+    return res.status(404).send('Not Found');
+  }
+
+  res.render("pages/task", {task: task});
+});
+
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
