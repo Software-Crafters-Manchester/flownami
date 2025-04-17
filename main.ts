@@ -34,9 +34,6 @@ app.get("/board", async function (_req, res) {
   res.render("pages/board", { columns });
 });
 
-app.get("/tasks/new", (_req, res) => {
-  res.render("pages/create");
-});
 async function getTaskById(tasks: TaskDb, taskId)  {
   for (var idx = 0; idx < tasks.length; idx++){
     for (var iidx = 0; iidx < tasks[idx].tasks.length; iidx++) {
@@ -85,6 +82,9 @@ async function readTasks() {
   return JSON.parse(data);
 }
 
+app.get("/tasks/new", (_req, res) => {
+  res.render("pages/create");
+});
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;
 
