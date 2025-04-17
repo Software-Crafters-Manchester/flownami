@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 async function updateTask() {
   const location = window.location.pathname.slice(1);
   const taskId = location.split("/")[1];
@@ -5,7 +6,7 @@ async function updateTask() {
   const name = document.getElementById("taskName").innerText;
   const column = document.getElementById("taskColumn").value;
 
-  let updatedTask = {
+  const updatedTask = {
     id: taskId,
     name,
     column,
