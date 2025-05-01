@@ -1,7 +1,7 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
 import { Task } from "./Task.ts";
-import { addNewTask, findTaskById, updateTask, removeTask } from "./service.ts";
+import { addNewTask, findTaskById, removeTask, updateTask } from "./service.ts";
 
 const tasksRouter = express();
 

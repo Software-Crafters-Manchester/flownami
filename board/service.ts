@@ -20,4 +20,3 @@ function buildBoard(tasks: Task[]): Board {
   ];
   return updatedColumns;
 }
-

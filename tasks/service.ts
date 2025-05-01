@@ -1,7 +1,7 @@
 import { readTasks, writeTasks } from "../data.ts";
 import { Task } from "./Task.ts";
 
-export async function addNewTask(taskName: any) {
+export async function addNewTask(taskName: string) {
   const newTask = { id: crypto.randomUUID(), name: taskName, column: "To Do" };
 
   const tasks = await readTasks();
@@ -20,7 +20,8 @@ export async function findTaskById(id: string) {
 export async function updateTask(updatedTask: Task) {
   const tasks = await readTasks();
 
-  const currentTaskIndex = tasks.findIndex((t: Task) => t.id === updatedTask.id
+  const currentTaskIndex = tasks.findIndex((t: Task) =>
+    t.id === updatedTask.id
   );
 
   tasks[currentTaskIndex] = updatedTask;
