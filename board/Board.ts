@@ -1,4 +1,4 @@
-import { Task } from "../task/Task.ts";
+import { Task } from "../tasks/Task.ts";
 
 export type Column = {
   name: string;

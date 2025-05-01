@@ -1,7 +1,7 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
-import { readTasks, writeTasks } from "../data.ts";
 import { Task } from "./Task.ts";
+import { addNewTask, findTaskById, updateTask, removeTask } from "./service.ts";
 
 const tasksRouter = express();
 
@@ -12,36 +12,23 @@ tasksRouter.get("/new", (_req, res) => {
 tasksRouter.post("/", async (req, res) => {
   const taskName = req.body.taskName;
 
-  const newTask = { id: crypto.randomUUID(), name: taskName, column: "To Do" };
-
-  const tasks = await readTasks();
-
-  tasks.push(newTask);
-
-  await writeTasks(tasks);
+  await addNewTask(taskName);
 
   res.redirect("/board");
 });
 
 tasksRouter.get("/:id/edit", async (req, res) => {
-  const tasks = await readTasks();
+  const id = req.params.id;
 
-  const task = tasks.find((task: Task) => task.id === req.params.id);
+  const task = await findTaskById(id);
 
   res.render("tasks/edit", { task });
 });
 
 tasksRouter.put("/:id", async (req, res) => {
-  const tasks = await readTasks();
-
   const updatedTask: Task = req.body;
 
-  const currentTaskIndex = tasks.findIndex((t: Task) =>
-    t.id === updatedTask.id
-  );
-  tasks[currentTaskIndex] = updatedTask;
-
-  await writeTasks(tasks);
+  await updateTask(updatedTask);
 
   res.sendStatus(204);
 
@@ -49,13 +36,9 @@ tasksRouter.put("/:id", async (req, res) => {
 });
 
 tasksRouter.delete("/:id", async (req, res) => {
-  const tasks = await readTasks();
-
   const id = req.params.id;
 
-  const updatedTasks = tasks.filter((t: Task) => t.id != id);
-
-  await writeTasks(updatedTasks);
+  await removeTask(id);
 
   res.sendStatus(204);
 

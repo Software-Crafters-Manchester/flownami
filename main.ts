@@ -1,7 +1,7 @@
 // @ts-types="npm:@types/express"
 import express from "npm:express";
-import tasksRouter from "./task/task_handler.ts";
-import boardRouter from "./board/board_handler.ts";
+import tasksRouter from "./tasks/handler.ts";
+import boardRouter from "./board/handler.ts";
 
 export const app = express();
 

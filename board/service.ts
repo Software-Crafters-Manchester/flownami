@@ -1,20 +1,13 @@
-// @ts-types="npm:@types/express"
-import express from "npm:express";
-
-import { Board, Column } from "./Board.ts";
 import { readTasks } from "../data.ts";
-import { Task } from "../task/Task.ts";
+import { Task } from "../tasks/Task.ts";
+import { Board, Column } from "./Board.ts";
 
-const boardRouter = express();
-
-boardRouter.get("/", async function (_req, res) {
+export async function generateBoard() {
   const tasks = await readTasks();
 
   const board = buildBoard(tasks);
-
-  res.render("./board/pages", { board });
-});
-
+  return board;
+}
 function buildBoard(tasks: Task[]): Board {
   const todoTasks: Task[] = tasks.filter((t) => t.column === "To Do");
   const doingTasks: Task[] = tasks.filter((t) => t.column === "Doing");
@@ -28,4 +21,3 @@ function buildBoard(tasks: Task[]): Board {
   return updatedColumns;
 }
 
-export default boardRouter;
