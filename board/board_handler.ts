@@ -5,7 +5,6 @@ import { Board, Column } from "./Board.ts";
 import { readTasks } from "../data.ts";
 import { Task } from "../task/Task.ts";
 
-
 const boardRouter = express();
 
 boardRouter.get("/", async function (_req, res) {
@@ -30,4 +29,3 @@ function buildBoard(tasks: Task[]): Board {
 }
 
 export default boardRouter;
-

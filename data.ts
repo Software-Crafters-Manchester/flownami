@@ -7,4 +7,3 @@ export async function readTasks() {
   const data = await Deno.readTextFile("./data.json");
   return JSON.parse(data);
 }
-

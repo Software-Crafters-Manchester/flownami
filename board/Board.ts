@@ -6,4 +6,3 @@ export type Column = {
 };
 
 export type Board = Column[];
-
