@@ -94,6 +94,27 @@ app.put("/tasks/:id", async (req, res) => {
   return;
 });
 
+app.delete('/tasks/:id', async(req, res) => {
+  const columns = await readTasks();
+  const tasks: Task[] = columns.reduce((acc: Task[][], column: Column) => {
+    acc.push(column.tasks);
+    return acc;
+  }, [])
+    .flat();
+
+  const id = req.params.id;
+
+  const updatedTasks = tasks.filter((t) => t.id != id);
+
+  const updatedColumns = buildBoard(updatedTasks);
+
+  await writeTasks(updatedColumns);
+
+  res.sendStatus(204);
+
+  return;
+});
+
 function buildBoard(tasks: Task[]): Board {
   const todoTasks: Task[] = tasks.filter((t) => t.column === "To Do");
   const doingTasks: Task[] = tasks.filter((t) => t.column === "Doing");
