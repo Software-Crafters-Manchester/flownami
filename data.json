@@ -1,1 +1,23 @@
-[{"name":"To Do","tasks":[{"id":"e6623c8e-9cb7-4eb5-bb7a-0dd2b97a5297","name":"New Task 1","column":"To Do"}]},{"name":"Doing","tasks":[{"id":"bc6e3949-f2ed-4fa2-b4db-ab2c24104a1e","name":"New Task","column":"Doing"}]},{"name":"Done","tasks":[]}]
+[
+  {
+    "name": "To Do",
+    "tasks": [
+      {
+        "id": "e6623c8e-9cb7-4eb5-bb7a-0dd2b97a5297",
+        "name": "New Task 1",
+        "column": "To Do"
+      }
+    ]
+  },
+  {
+    "name": "Doing",
+    "tasks": [
+      {
+        "id": "bc6e3949-f2ed-4fa2-b4db-ab2c24104a1e",
+        "name": "New Task",
+        "column": "Doing"
+      }
+    ]
+  },
+  { "name": "Done", "tasks": [] }
+]

@@ -94,7 +94,7 @@ app.put("/tasks/:id", async (req, res) => {
   return;
 });
 
-app.delete('/tasks/:id', async(req, res) => {
+app.delete("/tasks/:id", async (req, res) => {
   const columns = await readTasks();
   const tasks: Task[] = columns.reduce((acc: Task[][], column: Column) => {
     acc.push(column.tasks);
