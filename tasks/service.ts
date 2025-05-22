@@ -17,8 +17,8 @@ export async function findTaskById(id: string, taskRepo: TaskRepo) {
   return task;
 }
 
-export async function updateTask(updatedTask: Task) {
-  const tasks = await readTasks();
+export async function updateTask(updatedTask: Task, taskRepo: TaskRepo) {
+  const tasks = await taskRepo.readTasks();
 
   const currentTaskIndex = tasks.findIndex((t: Task) =>
     t.id === updatedTask.id
@@ -26,7 +26,7 @@ export async function updateTask(updatedTask: Task) {
 
   tasks[currentTaskIndex] = updatedTask;
 
-  await writeTasks(tasks);
+  await taskRepo.writeTasks(tasks);
 }
 
 export async function removeTask(id: string) {

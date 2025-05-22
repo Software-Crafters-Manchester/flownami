@@ -29,7 +29,7 @@ tasksRouter.get("/:id/edit", async (req, res) => {
 tasksRouter.put("/:id", async (req, res) => {
   const updatedTask: Task = req.body;
 
-  await updateTask(updatedTask);
+  await updateTask(updatedTask, JSONTaskRepo);
 
   res.sendStatus(204);
 
