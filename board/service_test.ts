@@ -1,7 +1,7 @@
 import { generateBoard } from "./service.ts";
 import { Board } from "./Board.ts";
 import { assertArrayIncludes } from "@std/assert/array-includes";
-import { spy } from "@std/testing/mock";
+import { spy } from "jsr:@std/testing/mock";
 import { TaskRepo } from "../data.ts";
 import { Task } from "../tasks/Task.ts";
 

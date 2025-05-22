@@ -14,12 +14,3 @@ export const JSONTaskRepo: TaskRepo = {
     return JSON.parse(data);
   },
 };
-
-export async function writeTasks(tasks: Task[]) {
-  await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
-}
-
-export async function readTasks() {
-  const data = await Deno.readTextFile("./data.json");
-  return JSON.parse(data);
-}
