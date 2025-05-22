@@ -11,8 +11,8 @@ export async function addNewTask(taskName: string, taskRepo: TaskRepo) {
   await taskRepo.writeTasks(tasks);
 }
 
-export async function findTaskById(id: string) {
-  const tasks = await readTasks();
+export async function findTaskById(id: string, taskRepo: TaskRepo) {
+  const tasks = await taskRepo.readTasks();
   const task = tasks.find((task: Task) => task.id === id);
   return task;
 }

@@ -21,7 +21,7 @@ tasksRouter.post("/", async (req, res) => {
 tasksRouter.get("/:id/edit", async (req, res) => {
   const id = req.params.id;
 
-  const task = await findTaskById(id);
+  const task = await findTaskById(id, JSONTaskRepo);
 
   res.render("tasks/edit", { task });
 });

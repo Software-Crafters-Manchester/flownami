@@ -1,10 +1,5 @@
-import {
-  assertSpyCallAsync,
-  assertSpyCalls,
-  spy,
-  stub,
-} from "jsr:@std/testing/mock";
-import { addNewTask } from "./service.ts";
+import { assertSpyCallAsync, spy, stub } from "jsr:@std/testing/mock";
+import { addNewTask, findTaskById } from "./service.ts";
 import { TaskRepo } from "../data.ts";
 import { Task } from "./Task.ts";
 import { UUID } from "node:crypto";
@@ -12,7 +7,7 @@ import { UUID } from "node:crypto";
 Deno.test("Add a Task to the repository", async () => {
   const fakeTasks: Task[] = [];
 
-  const readTasksSpy = spy(() => fakeTasks);
+  const readTasksSpy = spy(() => Promise.resolve(fakeTasks));
   const writeTasksSpy = spy(() => Promise.resolve());
   const randomUuidStub = stub(crypto, "randomUUID", () => "some-id" as UUID);
 
@@ -32,6 +27,27 @@ Deno.test("Add a Task to the repository", async () => {
     newTask,
   ];
 
-  assertSpyCallAsync(writeTasksSpy, 0, { args: [expectedTasks] });
+  await assertSpyCallAsync(writeTasksSpy, 0, { args: [expectedTasks] });
   randomUuidStub.restore();
+});
+
+Deno.test("Find a task by ID", async () => {
+  const newTask: Task = {
+    id: "some-id",
+    name: "New Test Task",
+    column: "To Do",
+  };
+  const fakeTasks: Task[] = [newTask];
+
+  const readTasksSpy = spy(() => Promise.resolve(fakeTasks));
+  const writeTasksSpy = spy(() => Promise.resolve());
+
+  const taskRepo = {
+    writeTasks: writeTasksSpy,
+    readTasks: readTasksSpy,
+  } as unknown as TaskRepo;
+
+  await findTaskById("some-id", taskRepo);
+
+  await assertSpyCallAsync(readTasksSpy, 0, { args: [], returned: fakeTasks });
 });
