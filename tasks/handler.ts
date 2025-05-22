@@ -39,7 +39,7 @@ tasksRouter.put("/:id", async (req, res) => {
 tasksRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
-  await removeTask(id);
+  await removeTask(id, JSONTaskRepo);
 
   res.sendStatus(204);
 

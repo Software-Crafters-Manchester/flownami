@@ -1,4 +1,4 @@
-import { readTasks, TaskRepo, writeTasks } from "../data.ts";
+import { TaskRepo } from "../data.ts";
 import { Task } from "./Task.ts";
 
 export async function addNewTask(taskName: string, taskRepo: TaskRepo) {
@@ -29,10 +29,10 @@ export async function updateTask(updatedTask: Task, taskRepo: TaskRepo) {
   await taskRepo.writeTasks(tasks);
 }
 
-export async function removeTask(id: string) {
-  const tasks = await readTasks();
+export async function removeTask(id: string, taskRepo: TaskRepo) {
+  const tasks = await taskRepo.readTasks();
 
   const updatedTasks = tasks.filter((t: Task) => t.id != id);
 
-  await writeTasks(updatedTasks);
+  await taskRepo.writeTasks(updatedTasks);
 }
