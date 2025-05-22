@@ -9,6 +9,7 @@
     "jsr:@std/internal@^1.0.6": "1.0.6",
     "jsr:@std/path@^1.0.8": "1.0.9",
     "jsr:@std/path@^1.0.9": "1.0.9",
+    "jsr:@std/testing@*": "1.0.11",
     "jsr:@std/testing@^1.0.11": "1.0.11",
     "npm:@types/express@*": "5.0.0",
     "npm:body-parser@*": "1.20.3",

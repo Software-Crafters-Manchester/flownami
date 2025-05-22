@@ -1,14 +1,14 @@
-import { readTasks, writeTasks } from "../data.ts";
+import { readTasks, TaskRepo, writeTasks } from "../data.ts";
 import { Task } from "./Task.ts";
 
-export async function addNewTask(taskName: string) {
+export async function addNewTask(taskName: string, taskRepo: TaskRepo) {
   const newTask = { id: crypto.randomUUID(), name: taskName, column: "To Do" };
 
-  const tasks = await readTasks();
+  const tasks = await taskRepo.readTasks();
 
   tasks.push(newTask);
 
-  await writeTasks(tasks);
+  await taskRepo.writeTasks(tasks);
 }
 
 export async function findTaskById(id: string) {

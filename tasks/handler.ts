@@ -2,6 +2,7 @@
 import express from "npm:express";
 import { Task } from "./Task.ts";
 import { addNewTask, findTaskById, removeTask, updateTask } from "./service.ts";
+import { JSONTaskRepo } from "../data.ts";
 
 const tasksRouter = express();
 
@@ -12,7 +13,7 @@ tasksRouter.get("/new", (_req, res) => {
 tasksRouter.post("/", async (req, res) => {
   const taskName = req.body.taskName;
 
-  await addNewTask(taskName);
+  await addNewTask(taskName, JSONTaskRepo);
 
   res.redirect("/board");
 });
