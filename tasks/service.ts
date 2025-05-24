@@ -29,7 +29,10 @@ export async function updateTask(updatedTask: Task, taskRepo: TaskRepo) {
     t.id === updatedTask.id
   );
 
-  tasks[currentTaskIndex] = updatedTask;
+  tasks[currentTaskIndex] = {
+    ...updatedTask,
+    created: tasks[currentTaskIndex].created,
+  };
 
   await taskRepo.writeTasks(tasks);
 }
