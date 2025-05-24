@@ -22,7 +22,7 @@ Deno.test("Add a Task to the repository", async () => {
     id: "some-id",
     name: "New Test Task",
     column: "To Do",
-    created: new Date("2025-05-24T18:25:43.511Z"),
+    created: new Date(),
   };
   const expectedTasks: Task[] = [
     newTask,
