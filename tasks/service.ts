@@ -7,6 +7,7 @@ export async function addNewTask(taskName: string, taskRepo: TaskRepo) {
     name: taskName,
     column: "To Do",
     created: new Date(),
+    updated: new Date(),
   };
 
   const tasks = await taskRepo.readTasks();
@@ -32,6 +33,7 @@ export async function updateTask(updatedTask: Task, taskRepo: TaskRepo) {
   tasks[currentTaskIndex] = {
     ...updatedTask,
     created: tasks[currentTaskIndex].created,
+    updated: new Date(),
   };
 
   await taskRepo.writeTasks(tasks);

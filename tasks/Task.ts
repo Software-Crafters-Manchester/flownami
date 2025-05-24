@@ -3,4 +3,5 @@ export type Task = {
   name: string;
   column: string;
   created: Date;
+  updated: Date;
 };
