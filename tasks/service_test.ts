@@ -23,6 +23,7 @@ Deno.test("Add a Task to the repository", async () => {
     name: "New Test Task",
     column: "To Do",
     created: new Date(),
+    updated: new Date(),
   };
   const expectedTasks: Task[] = [
     newTask,
@@ -38,6 +39,7 @@ Deno.test("Find a task by ID", async () => {
     name: "New Test Task",
     column: "To Do",
     created: new Date("2025-05-24T18:25:43.511Z"),
+    updated: new Date("2025-05-24T18:25:43.511Z"),
   };
   const fakeTasks: Task[] = [newTask];
 
@@ -60,6 +62,7 @@ Deno.test("Update a Task", async () => {
     name: "New Test Task",
     column: "To Do",
     created: new Date("2025-05-24T18:25:43.511Z"),
+    updated: new Date(),
   };
   const fakeTasks: Task[] = [newTask];
 
@@ -82,6 +85,7 @@ Deno.test("Update a Task", async () => {
     name: "New Test Task",
     column: "To Do",
     created: new Date("2025-05-24T18:25:43.511Z"),
+    updated: new Date(),
   };
   const fakeTasks: Task[] = [newTask];
 
@@ -98,6 +102,7 @@ Deno.test("Update a Task", async () => {
     name: "New Test Task Updated",
     column: "To Do",
     created: new Date("2025-05-24T18:25:43.511Z"),
+    updated: new Date(),
   };
   await updateTask(updatedTask, taskRepo);
 
@@ -112,6 +117,7 @@ Deno.test("Remove a Task", async () => {
     name: "New Test Task",
     column: "To Do",
     created: new Date("2025-05-24T18:25:43.511Z"),
+    updated: new Date("2025-05-24T18:25:43.511Z"),
   };
   const fakeTasks: Task[] = [newTask];
 
