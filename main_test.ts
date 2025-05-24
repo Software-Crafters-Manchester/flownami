@@ -16,3 +16,17 @@ Deno.test("Board shows three columns", async () => {
   assertStringIncludes(html, "Doing");
   assertStringIncludes(html, "Done");
 });
+
+Deno.test("Board shows created", async () => {
+  const response = await fetch("http://localhost:8081/board");
+  const html = await response.text();
+  assertStringIncludes(html, "Created");
+});
+
+Deno.test("Edit task shows created", async () => {
+  const response = await fetch(
+    "http://localhost:8081/tasks/278c5e66-1d97-4888-aa37-9893eba64229/edit",
+  );
+  const html = await response.text();
+  assertStringIncludes(html, "Created");
+});
