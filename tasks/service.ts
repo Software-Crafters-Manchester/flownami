@@ -2,7 +2,13 @@ import { TaskRepo } from "../data.ts";
 import { Task } from "./Task.ts";
 
 export async function addNewTask(taskName: string, taskRepo: TaskRepo) {
-  const newTask = { id: crypto.randomUUID(), name: taskName, column: "To Do" };
+  const newTask = {
+    id: crypto.randomUUID(),
+    name: taskName,
+    column: "To Do",
+    created: new Date(),
+    updated: new Date(),
+  };
 
   const tasks = await taskRepo.readTasks();
 
@@ -24,7 +30,11 @@ export async function updateTask(updatedTask: Task, taskRepo: TaskRepo) {
     t.id === updatedTask.id
   );
 
-  tasks[currentTaskIndex] = updatedTask;
+  tasks[currentTaskIndex] = {
+    ...updatedTask,
+    created: tasks[currentTaskIndex].created,
+    updated: new Date(),
+  };
 
   await taskRepo.writeTasks(tasks);
 }

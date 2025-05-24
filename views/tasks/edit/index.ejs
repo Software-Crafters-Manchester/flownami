@@ -1,16 +1,17 @@
-
 <%- include('../../partials/header'); %>
 
 <main>
   <div>
     <h1>Edit Task</h1>
-      <span id="taskName"><%- task.name %></span>
-      <select id="taskColumn" name="column">
-        <option value="To Do" selected>To Do</option>
-        <option value="Doing" >Doing</option>
-        <option value="Done" >Done</option>
-      </select>
-      <input type="submit" onclick="updateTask()"/>
+    <span id="taskName"><%- task.name %></span>
+    <select id="taskColumn" name="column">
+      <option value="To Do" selected>To Do</option>
+      <option value="Doing">Doing</option>
+      <option value="Done">Done</option>
+    </select>
+    <input type="submit" onclick="updateTask()" />
+    <p><b>Created: </b><%= task.created %></p>
+    <p><b>Updated: </b><%= task.updated %></p>
   </div>
 </main>
 
