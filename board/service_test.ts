@@ -10,7 +10,7 @@ Deno.test("generate a Board", async () => {
     id: "some-id",
     name: "Some Name",
     column: "To Do",
-    created: "2025-05-24T18:25:43.511Z",
+    created: new Date("2025-05-24T18:25:43.511Z"),
   };
 
   const fakeTasks: Task[] = [fakeTask];
